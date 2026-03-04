@@ -1,0 +1,884 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orari Castello delle Sorprese 2026</title>
+  <style>
+    :root {
+      --bg: #f8f8ff;
+      --card: #ffffff;
+      --ink: #1a2452;
+      --muted: #4a5b86;
+      --brand: #1b4da1;
+      --accent: #7d3cc7;
+      --sun: #ffe100;
+      --brand-soft: #eef3ff;
+      --border: #d7dff1;
+      --ok: #1f8f5f;
+      --warn: #b57600;
+      --shadow: 0 8px 24px rgba(16, 39, 90, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #eef2ff 0%, #fbfcff 35%, var(--bg) 100%);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    header.hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header.hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--brand) 0%, var(--accent) 55%, var(--sun) 100%);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.5rem, 3.6vw, 2.2rem);
+      color: var(--brand);
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fcfcff;
+      padding: 12px;
+      font-size: 0.95rem;
+    }
+
+    .meta strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #2f3550;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 12px;
+    }
+
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: #27304a;
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: #b8c4e7;
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      border-color: transparent;
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+      color: #fff;
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    .panel-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 1.2rem;
+      color: var(--brand);
+    }
+
+    .activity-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
+    }
+
+    .activity {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .activity:target {
+      outline: 2px solid #8f7dff;
+      box-shadow: 0 0 0 4px #efeaff;
+    }
+
+    .activity h3 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+      color: #1f2a47;
+    }
+
+    .place {
+      margin: 0 0 8px;
+      color: #5c6578;
+      font-size: 0.92rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .chip {
+      background: var(--brand-soft);
+      color: var(--brand);
+      border: 1px solid #c9d7ff;
+      padding: 4px 8px;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      max-width: 100%;
+    }
+
+    .note {
+      margin: 0;
+      color: #535d73;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding: 10px;
+      border: 1px dashed #cfd8ef;
+      border-radius: 12px;
+      background: #fbfcff;
+    }
+
+    label {
+      font-weight: 600;
+      color: #2f3550;
+    }
+
+    select {
+      border: 1px solid #c5d0eb;
+      background: #fff;
+      border-radius: 8px;
+      padding: 7px 10px;
+      font-size: 0.95rem;
+      min-width: 120px;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-left: auto;
+    }
+
+    .time-columns {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    .slot {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      background: #fff;
+    }
+
+    .slot-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .slot-time {
+      margin: 0;
+      font-size: 1.02rem;
+      color: #1f2a47;
+    }
+
+    .slot-count {
+      font-size: 0.84rem;
+      color: #57607a;
+      background: #f2f5ff;
+      border: 1px solid #dfe6ff;
+      border-radius: 999px;
+      padding: 2px 8px;
+    }
+
+    .opens {
+      margin: 0;
+      padding-left: 18px;
+      color: #2d3448;
+    }
+
+    .opens li {
+      margin-bottom: 3px;
+      line-height: 1.35;
+    }
+
+    .activity-link {
+      color: var(--brand);
+      text-decoration: none;
+      border-bottom: 1px dotted #8fa6e3;
+    }
+
+    .activity-link:hover {
+      text-decoration: underline;
+    }
+
+    .time-link {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dotted #b99be4;
+      font-weight: 600;
+    }
+
+    .time-link:hover {
+      text-decoration: underline;
+    }
+
+    .legend {
+      margin-top: 14px;
+      padding: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .status {
+      display: inline-block;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      padding: 2px 8px;
+      margin-left: 6px;
+      border: 1px solid transparent;
+    }
+
+    .status.open {
+      color: var(--ok);
+      border-color: #bdebd5;
+      background: #effcf5;
+    }
+
+    .status.session {
+      color: var(--warn);
+      border-color: #f1d8a4;
+      background: #fff8e9;
+    }
+
+    .footer-note {
+      margin-top: 16px;
+      color: #505a71;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .sub-activity-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      color: #2d3448;
+      font-size: 0.9rem;
+    }
+
+    .sub-activity-list li {
+      margin-bottom: 4px;
+      overflow-wrap: anywhere;
+    }
+
+    .sub-now {
+      margin-top: 4px;
+      font-size: 0.86rem;
+      color: #5d4b08;
+      background: #fff8db;
+      border: 1px solid #f0df9d;
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: inline-block;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(16, 24, 48, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      z-index: 30;
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal {
+      width: min(620px, 100%);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(8, 18, 41, 0.22);
+      padding: 14px;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .modal-title {
+      margin: 0;
+      color: var(--brand);
+      font-size: 1.1rem;
+    }
+
+    .modal-close {
+      border: 1px solid #c5d0eb;
+      background: #fff;
+      color: #2f3550;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    @media (max-width: 700px) {
+      .container {
+        padding: 14px;
+      }
+
+      .controls {
+        align-items: flex-start;
+      }
+
+      .hint {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      select {
+        width: 100%;
+      }
+
+      .modal {
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <h1>Orari Castello delle Sorprese 2026</h1>
+      <p class="lead">
+        Programma completo della giornata, consultabile in due modi: per singola attività e per fascia oraria.
+      </p>
+      <div class="meta-grid">
+        <div class="meta">
+          <strong>Biglietteria e ingressi</strong>
+          09:30 - 15:00 (ultimo ingresso)
+        </div>
+        <div class="meta">
+          <strong>Termine attività</strong>
+          ore 17:00
+        </div>
+        <div class="meta">
+          <strong>Chiusura Parco e Castello</strong>
+          ore 17:30
+        </div>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Modalità di visualizzazione">
+      <button class="tab-btn active" data-target="by-activity">Per attività</button>
+      <button class="tab-btn" data-target="by-time">Per fascia oraria</button>
+    </nav>
+
+    <section id="by-activity" class="panel active">
+      <article class="panel-card">
+        <h2 class="section-title">Programma per attività</h2>
+        <div id="activity-list" class="activity-list"></div>
+      </article>
+    </section>
+
+    <section id="by-time" class="panel">
+      <article class="panel-card">
+        <h2 class="section-title">Cosa è aperto</h2>
+        <div class="controls">
+          <label for="time-filter">Seleziona orario:</label>
+          <select id="time-filter"></select>
+          <span class="hint">Mostra le attività aperte in quel momento.</span>
+        </div>
+        <div id="single-slot-result" class="slot"></div>
+
+        <div class="legend">
+          <strong>Panoramica completa (orari principali e inizi attività)</strong>
+          <div id="timeline" class="time-columns"></div>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer-note">
+      Per tutta la giornata: possibilità di pic nic nel Parco e punti ristoro.
+      Dalle 09:30 alle 17:00 è aperto anche il <strong>Sentiero Incantato del Castello</strong>:
+      bestiario d'arte e incantesimi sonori, percorso di circa 1 km con creature e strumenti interattivi per tutti.
+    </p>
+  </main>
+
+  <div id="activity-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-head">
+        <h3 id="modal-title" class="modal-title">Dettaglio attività</h3>
+        <button id="modal-close" class="modal-close" type="button">Chiudi</button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    const program = [
+      {
+        name: "Spettacoli - K-POP",
+        location: "Area Spettacoli",
+        openRanges: [["11:30", "12:10"], ["16:00", "16:40"]],
+        starts: ["11:30", "16:00"],
+        startsText: "Inizio spettacolo ore 11:30 - Inizio spettacolo ore 16:00",
+        startsLabel: "inizio spettacolo",
+        runningLabel: "spettacolo in corso",
+        note: "Durata circa 20 minuti. Per raggiungere l'Area Spettacoli scendere per circa 200 mt. nella parte inferiore del Parco, cancello sulla destra osservando il Castello."
+      },
+      {
+        name: "Spettacoli - BEE-Dance con Ape Maia",
+        location: "Area Spettacoli",
+        openRanges: [["14:00", "15:00"]],
+        starts: [],
+        sessionByRanges: true,
+        note: "L'attività dura un'ora, puoi unirti quando vuoi e ballare con le musiche del Musical ufficiale per i 50 anni dell'Ape Maia."
+      },
+      {
+        name: "Giardino delle Principesse",
+        location: "Cortile degli Stemmi",
+        openRanges: [["10:00", "13:30"], ["15:00", "17:00"]],
+        starts: [],
+        note: "Incontra le Principesse più amate, parla con loro. Puoi scattare liberamente foto insieme. Puoi vestirti a tema, sarà ancora più bello."
+      },
+      {
+        name: "Scuola di Magia",
+        location: "Terrazza Panoramica. Si trova all'esterno, sulla destra osservando il Castello, oltre il punto ristoro e i bagni.",
+        openRanges: [["10:00", "17:00"]],
+        starts: [],
+        note: "Area aperta continuativamente con più esperienze. Maghi e maghette se vogliono possono vestirsi a tema, sarà ancora più bello.",
+        subActivities: [
+          {
+            name: "Lezioni Pozioni",
+            starts: ["11:00", "12:00", "14:30", "15:30"],
+            note: "Durata indicativa: circa 15 minuti."
+          },
+          {
+            name: "Lezioni Difesa delle Arti oscure",
+            starts: ["10:30", "11:30", "14:00", "15:00", "16:15"],
+            note: "Durata indicativa: circa 15 minuti."
+          }
+        ]
+      },
+      {
+        name: "Il Calice dei Tre Campioni",
+        location: "Castello - Sala Armature",
+        openRanges: [["10:00", "11:45"], ["13:15", "17:00"]],
+        starts: [],
+        note: "Maghi e maghette se vogliono possono vestirsi a tema, sarà ancora più bello.",
+        subActivities: [
+          {
+            name: "Mini Torneo",
+            starts: ["10:30", "11:00", "14:00", "15:00", "16:00"],
+            note: "Durata indicativa: circa 20 minuti."
+          }
+        ]
+      },
+      {
+        name: "Ballo nel Castello",
+        location: "Castello - Salone delle Feste",
+        openRanges: [["10:30", "12:00"], ["13:30", "15:00"], ["16:00", "17:00"]],
+        starts: [],
+        note: "Con una maestra di danza eccezionale, la Principessa Belle. Se vuoi puoi vestirti a tema, sarà ancora più bello."
+      },
+      {
+        name: "Stanza Snoezelen per bambini",
+        location: "Castello - Stanza del Camino",
+        openRanges: [["10:00", "12:30"], ["14:00", "15:30"], ["16:00", "17:00"]],
+        starts: ["10:00", "10:30", "11:00", "11:30", "12:00", "14:00", "14:30", "15:00", "16:00", "16:30"],
+        note: "Accesso a turni."
+      },
+      {
+        name: "Casa di Mago Merlino",
+        location: "Parco (bimbi)",
+        openRanges: [["10:30", "12:00"], ["13:30", "16:15"]],
+        starts: []
+      },
+      {
+        name: "Area Benessere - Yin Yoga",
+        location: "Parco",
+        openRanges: [["10:30", "11:00"], ["12:10", "12:40"], ["13:50", "14:20"], ["15:30", "16:00"]],
+        starts: [],
+        sessionByRanges: true,
+        note: "Area relax per i genitori. Nuova formula Family Fun&Relax esclusiva di Grotta di Babbo Natale Lem s.r.l."
+      },
+      {
+        name: "Area Benessere - Meditazione del Cuore",
+        location: "Parco",
+        openRanges: [["11:20", "11:50"], ["13:00", "13:30"], ["14:40", "15:10"], ["16:20", "16:50"]],
+        starts: [],
+        sessionByRanges: true,
+        note: "Area relax per i genitori. Nuova formula Family Fun&Relax esclusiva di Grotta di Babbo Natale Lem s.r.l."
+      },
+      {
+        name: "Sentiero Incantato del Castello",
+        location: "Parco",
+        openRanges: [["09:30", "17:00"]],
+        starts: [],
+        note: "Bestiario d'arte e incantesimi sonori, percorso di circa 1 km. Scendere nella parte inferiore del Parco, cancello sulla destra osservando il Castello e proseguire oltre l'Area Spettacoli. Nuove installazioni per eventi esclusive di Grotta di Babbo Natale Lem s.r.l."
+      }
+    ];
+    const activities = program.map((item, idx) => ({ ...item, id: "activity-" + idx }));
+
+    const START = "09:30";
+    const END = "17:00";
+    const STEP_MINUTES = 30;
+
+    function toMinutes(time) {
+      const [h, m] = time.replace(",", ":").split(":").map(Number);
+      return h * 60 + m;
+    }
+
+    function toTime(totalMinutes) {
+      const h = String(Math.floor(totalMinutes / 60)).padStart(2, "0");
+      const m = String(totalMinutes % 60).padStart(2, "0");
+      return h + ":" + m;
+    }
+
+    function isWithinRange(time, range) {
+      const t = toMinutes(time);
+      const start = toMinutes(range[0]);
+      const end = toMinutes(range[1]);
+      return t >= start && t < end;
+    }
+
+    function isOpenAt(activity, time) {
+      return activity.openRanges.some(range => isWithinRange(time, range));
+    }
+
+    function hasStartAt(activity, time) {
+      return activity.starts.includes(time);
+    }
+
+    function hasRangeStartAt(activity, time) {
+      return activity.openRanges.some(([start]) => start === time);
+    }
+
+    function hasRangeRunningAt(activity, time) {
+      return activity.openRanges.some(([start, end]) => {
+        const t = toMinutes(time);
+        const s = toMinutes(start);
+        const e = toMinutes(end);
+        return t > s && t < e;
+      });
+    }
+
+    function buildSlots(start, end, step) {
+      const slots = new Set([start, end]);
+      let cursor = toMinutes(start);
+      const limit = toMinutes(end);
+      while (cursor <= limit) {
+        slots.add(toTime(cursor));
+        cursor += step;
+      }
+
+      activities.forEach(item => {
+        item.openRanges.forEach(([from, to]) => {
+          slots.add(from);
+          slots.add(to);
+        });
+        item.starts.forEach(time => slots.add(time));
+        (item.subActivities || []).forEach(sub => {
+          sub.starts.forEach(time => slots.add(time));
+        });
+      });
+
+      return Array.from(slots).sort((a, b) => toMinutes(a) - toMinutes(b));
+    }
+
+    function fmtRanges(ranges) {
+      return ranges.map(r => r[0] + " - " + r[1]);
+    }
+
+    function linkTime(time, label = time) {
+      return `<a class="time-link jump-time" href="#by-time" data-time="${time}">${label}</a>`;
+    }
+
+    function linkTimesList(times) {
+      return times.map(time => linkTime(time)).join(", ");
+    }
+
+    function buildActivityMarkup(item) {
+      const startsInfo = item.startsText
+        ? `<p class="note"><strong>${item.startsText.replace(/(\d{1,2}:\d{2})/g, (match) => linkTime(match))}</strong></p>`
+        : item.starts.length
+          ? '<p class="note"><strong>Inizi turni/lezioni:</strong> ' + linkTimesList(item.starts) + "</p>"
+          : "";
+      const subActivitiesInfo = (item.subActivities || []).length
+        ? `<ul class="sub-activity-list">${item.subActivities.map(sub =>
+            `<li><strong>${sub.name}:</strong> ${linkTimesList(sub.starts)}${sub.note ? " (" + sub.note + ")" : ""}</li>`
+          ).join("")}</ul>`
+        : "";
+      const noteInfo = item.note
+        ? '<p class="note">' + item.note + "</p>"
+        : "";
+
+      return `
+        <h3>${item.name}</h3>
+        <p class="place">${item.location}</p>
+        <div class="chips">
+          ${item.openRanges.map(([from, to]) => `<span class="chip">Aperto: ${linkTime(from)} - ${linkTime(to)}</span>`).join("")}
+        </div>
+        ${startsInfo}
+        ${subActivitiesInfo}
+        ${noteInfo}
+      `;
+    }
+
+    function renderActivities() {
+      const container = document.getElementById("activity-list");
+      container.innerHTML = "";
+      activities.forEach(item => {
+        const article = document.createElement("article");
+        article.className = "activity";
+        article.id = item.id;
+        article.innerHTML = buildActivityMarkup(item);
+        container.appendChild(article);
+      });
+    }
+
+    function activitiesAt(time) {
+      return activities
+        .filter(item => isOpenAt(item, time))
+        .map(item => {
+          const startNow = hasStartAt(item, time);
+          const rangeStartNow = item.sessionByRanges ? hasRangeStartAt(item, time) : false;
+          const rangeRunningNow = item.sessionByRanges ? hasRangeRunningAt(item, time) : false;
+          let statusLabel = "";
+
+          if (startNow) {
+            statusLabel = item.startsLabel || "inizio turno/lezione";
+          } else if (item.runningLabel) {
+            statusLabel = item.runningLabel;
+          } else if (rangeStartNow) {
+            statusLabel = "inizio attività";
+          } else if (rangeRunningNow) {
+            statusLabel = "attività in corso";
+          }
+
+          return {
+            ...item,
+            startNow,
+            subStartsNow: (item.subActivities || []).filter(sub => sub.starts.includes(time)),
+            statusLabel
+          };
+        });
+    }
+
+    function renderSlot(targetId, time) {
+      const target = document.getElementById(targetId);
+      const available = activitiesAt(time);
+      const items = available.length
+        ? `<ul class="opens">${available.map(a => `
+            <li>
+              <strong><a class="activity-link jump-activity" href="#${a.id}" data-activity-id="${a.id}">${a.name}</a></strong> (${a.location})
+              <span class="status open">aperto</span>
+              ${a.statusLabel ? `<span class="status session">${a.statusLabel}</span>` : ""}
+              ${a.subStartsNow.length ? `<div class="sub-now">${a.subStartsNow.map(sub => sub.name).join(" | ")}: inizio adesso</div>` : ""}
+            </li>
+          `).join("")}</ul>`
+        : '<p class="note">Nessuna attività aperta in questa fascia oraria.</p>';
+
+      target.innerHTML = `
+        <div class="slot-head">
+          <h3 class="slot-time">${time}</h3>
+          <span class="slot-count">${available.length} attività</span>
+        </div>
+        ${items}
+      `;
+    }
+
+    function renderTimeline(slots) {
+      const timeline = document.getElementById("timeline");
+      timeline.innerHTML = "";
+      slots.forEach(time => {
+        const wrapper = document.createElement("div");
+        wrapper.className = "slot";
+        wrapper.id = "slot-" + time.replace(":", "");
+        timeline.appendChild(wrapper);
+        renderSlot(wrapper.id, time);
+      });
+    }
+
+    function renderFilter(slots) {
+      const select = document.getElementById("time-filter");
+      select.innerHTML = slots.map(time => `<option value="${time}">${time}</option>`).join("");
+      select.value = "10:30";
+      renderSlot("single-slot-result", select.value);
+      select.addEventListener("change", () => {
+        renderSlot("single-slot-result", select.value);
+      });
+    }
+
+    function setupTabs() {
+      const buttons = Array.from(document.querySelectorAll(".tab-btn"));
+      const panels = Array.from(document.querySelectorAll(".panel"));
+      const modal = document.getElementById("activity-modal");
+      const modalBody = document.getElementById("modal-body");
+      const modalClose = document.getElementById("modal-close");
+      function activatePanel(targetId) {
+        buttons.forEach(b => b.classList.toggle("active", b.dataset.target === targetId));
+        panels.forEach(p => p.classList.toggle("active", p.id === targetId));
+      }
+
+      function openActivityModal(activityId) {
+        const item = activities.find(a => a.id === activityId);
+        if (!item) {
+          return;
+        }
+        modalBody.innerHTML = `<article class="activity">${buildActivityMarkup(item)}</article>`;
+        modal.classList.add("active");
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeActivityModal() {
+        modal.classList.remove("active");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          activatePanel(btn.dataset.target);
+        });
+      });
+
+      modalClose.addEventListener("click", closeActivityModal);
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          closeActivityModal();
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeActivityModal();
+        }
+      });
+
+      document.addEventListener("click", (event) => {
+        const timeLink = event.target.closest(".jump-time");
+        if (timeLink) {
+          event.preventDefault();
+          const selectedTime = timeLink.getAttribute("data-time");
+          const select = document.getElementById("time-filter");
+          if (select && selectedTime) {
+            activatePanel("by-time");
+            const hasOption = Array.from(select.options).some(opt => opt.value === selectedTime);
+            if (hasOption) {
+              select.value = selectedTime;
+            }
+            renderSlot("single-slot-result", select.value);
+            const timelineSlot = document.getElementById("slot-" + select.value.replace(":", ""));
+            if (timelineSlot) {
+              timelineSlot.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+          }
+          closeActivityModal();
+          return;
+        }
+
+        const link = event.target.closest(".jump-activity");
+        if (!link) {
+          return;
+        }
+        event.preventDefault();
+        const activityId = link.getAttribute("data-activity-id");
+        openActivityModal(activityId);
+      });
+    }
+
+    function init() {
+      const slots = buildSlots(START, END, STEP_MINUTES);
+      renderActivities();
+      renderFilter(slots);
+      renderTimeline(slots);
+      setupTabs();
+    }
+
+    init();
+  </script>
+</body>
+</html>

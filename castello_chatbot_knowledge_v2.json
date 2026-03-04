@@ -1,0 +1,767 @@
+{
+  "version": "2026-03-04",
+  "source": "Programma definitivo fornito dall'organizzazione",
+  "event": {
+    "event_name": "Castello delle Sorprese 2026",
+    "timezone": "Europe/Rome",
+    "opening": {
+      "ticket_office_and_entry": {
+        "start": "09:30",
+        "end": "15:00",
+        "note": "Ultimo ingresso alle 15:00"
+      },
+      "activities_end": "17:00",
+      "park_castle_close": "17:30"
+    },
+    "general_notes": [
+      "Pic-nic libero nel Parco e punti ristoro disponibili durante la giornata (compatibilmente con l'organizzazione del giorno).",
+      "Il Sentiero Incantato del Castello è lungo circa 1 km ed è adatto a tutti."
+    ],
+    "signature_path": {
+      "title": "Il Sentiero Incantato del Castello",
+      "claim": "Bestiario d’arte e incantesimi sonori: creature da scoprire, strumenti da suonare nel Parco.",
+      "description": "Un innovativo percorso di circa 1 km tra sentieri e stagno: creature colorate e strumenti sonori interattivi da suonare, immersi nel verde del Parco. Per tutti.",
+      "opening": [
+        {
+          "start": "09:30",
+          "end": "17:00"
+        }
+      ],
+      "tags": [
+        "per_tutti",
+        "interattivo",
+        "natura",
+        "arte",
+        "suono",
+        "passeggiata"
+      ]
+    }
+  },
+  "areas": [
+    {
+      "id": "shows",
+      "name": "Spettacoli",
+      "location": "Area Spettacoli",
+      "type": "show",
+      "open_windows": [
+        {
+          "start": "10:00",
+          "end": "17:00"
+        }
+      ],
+      "specials": [
+        {
+          "name": "K-POP",
+          "start": "11:30",
+          "end": "12:00",
+          "audience": [
+            "per_tutti"
+          ],
+          "notes": [
+            "Show per tutti"
+          ]
+        },
+        {
+          "name": "K-POP",
+          "start": "16:00",
+          "end": "16:30",
+          "audience": [
+            "per_tutti"
+          ],
+          "notes": [
+            "Show per tutti"
+          ]
+        },
+        {
+          "name": "BEE-Dance con Ape Maia",
+          "start": "14:00",
+          "end": "15:00",
+          "audience": [
+            "bambini",
+            "famiglie"
+          ],
+          "notes": [
+            "Animazione bimbi, area spettacoli"
+          ]
+        }
+      ],
+      "audience": [
+        "per_tutti"
+      ]
+    },
+    {
+      "id": "princesses",
+      "name": "Giardino delle Principesse",
+      "location": "Cortile degli Stemmi",
+      "type": "meet_greet",
+      "open_windows": [
+        {
+          "start": "10:00",
+          "end": "13:30"
+        },
+        {
+          "start": "15:00",
+          "end": "17:00"
+        }
+      ],
+      "specials": [],
+      "audience": [
+        "famiglie",
+        "bambini",
+        "per_tutti"
+      ]
+    },
+    {
+      "id": "magic_school",
+      "name": "Scuola di Magia",
+      "location": "Terrazza Panoramica",
+      "type": "interactive_show",
+      "open_windows": [
+        {
+          "start": "10:00",
+          "end": "17:00"
+        }
+      ],
+      "specials": [
+        {
+          "name": "Lezione Pozioni",
+          "start": "11:00",
+          "end": "11:15",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Pozioni",
+          "start": "12:00",
+          "end": "12:15",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Pozioni",
+          "start": "14:30",
+          "end": "14:45",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Pozioni",
+          "start": "15:30",
+          "end": "15:45",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Difesa dalle Arti Oscure",
+          "start": "10:30",
+          "end": "10:45",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Difesa dalle Arti Oscure",
+          "start": "11:30",
+          "end": "11:45",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Difesa dalle Arti Oscure",
+          "start": "14:00",
+          "end": "14:15",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Difesa dalle Arti Oscure",
+          "start": "15:00",
+          "end": "15:15",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        },
+        {
+          "name": "Lezione Difesa dalle Arti Oscure",
+          "start": "16:15",
+          "end": "16:30",
+          "audience": [
+            "bambini",
+            "famiglie",
+            "per_tutti"
+          ],
+          "notes": [
+            "Durata circa 15 minuti"
+          ]
+        }
+      ],
+      "audience": [
+        "per_tutti"
+      ]
+    },
+    {
+      "id": "goblet",
+      "name": "Il Calice dei Tre Campioni",
+      "location": "Castello – Sala Armature",
+      "type": "kids_turns",
+      "open_windows": [
+        {
+          "start": "10:00",
+          "end": "11:45"
+        },
+        {
+          "start": "13:15",
+          "end": "17:00"
+        }
+      ],
+      "specials": [
+        {
+          "name": "Mini Torneo",
+          "start": "10:30",
+          "end": "10:50",
+          "audience": [
+            "bambini"
+          ],
+          "capacity": 25,
+          "notes": [
+            "Durata circa 20 minuti"
+          ]
+        },
+        {
+          "name": "Mini Torneo",
+          "start": "11:00",
+          "end": "11:20",
+          "audience": [
+            "bambini"
+          ],
+          "capacity": 25,
+          "notes": [
+            "Durata circa 20 minuti"
+          ]
+        },
+        {
+          "name": "Mini Torneo",
+          "start": "14:00",
+          "end": "14:20",
+          "audience": [
+            "bambini"
+          ],
+          "capacity": 25,
+          "notes": [
+            "Durata circa 20 minuti"
+          ]
+        },
+        {
+          "name": "Mini Torneo",
+          "start": "15:00",
+          "end": "15:20",
+          "audience": [
+            "bambini"
+          ],
+          "capacity": 25,
+          "notes": [
+            "Durata circa 20 minuti"
+          ]
+        },
+        {
+          "name": "Mini Torneo",
+          "start": "16:00",
+          "end": "16:20",
+          "audience": [
+            "bambini"
+          ],
+          "capacity": 25,
+          "notes": [
+            "Durata circa 20 minuti"
+          ]
+        }
+      ],
+      "audience": [
+        "bambini",
+        "famiglie"
+      ]
+    },
+    {
+      "id": "ball",
+      "name": "Ballo nel Castello",
+      "location": "Castello – Salone delle Feste",
+      "type": "kids_turns",
+      "open_windows": [
+        {
+          "start": "10:30",
+          "end": "12:00"
+        },
+        {
+          "start": "13:30",
+          "end": "15:00"
+        },
+        {
+          "start": "16:00",
+          "end": "17:00"
+        }
+      ],
+      "specials": [],
+      "audience": [
+        "bambini",
+        "famiglie"
+      ]
+    },
+    {
+      "id": "snoezelen",
+      "name": "Stanza Snoezelen",
+      "location": "Castello – Stanza del Camino",
+      "type": "kids_turns",
+      "open_windows": [
+        {
+          "start": "10:00",
+          "end": "12:30"
+        },
+        {
+          "start": "14:00",
+          "end": "15:30"
+        },
+        {
+          "start": "16:00",
+          "end": "17:00"
+        }
+      ],
+      "specials": [
+        {
+          "name": "Turno Snoezelen",
+          "start": "10:00",
+          "end": "10:20",
+          "audience": [
+            "bambini"
+          ],
+          "notes": [
+            "Turni con inizio a orari fissi"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "10:30",
+          "end": "10:50",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "11:00",
+          "end": "11:20",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "11:30",
+          "end": "11:50",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "12:00",
+          "end": "12:20",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "14:00",
+          "end": "14:20",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "14:30",
+          "end": "14:50",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "15:00",
+          "end": "15:20",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "16:00",
+          "end": "16:20",
+          "audience": [
+            "bambini"
+          ]
+        },
+        {
+          "name": "Turno Snoezelen",
+          "start": "16:30",
+          "end": "16:50",
+          "audience": [
+            "bambini"
+          ]
+        }
+      ],
+      "audience": [
+        "bambini",
+        "famiglie"
+      ]
+    },
+    {
+      "id": "merlin",
+      "name": "Casa di Mago Merlino",
+      "location": "Parco (bimbi)",
+      "type": "kids_activity",
+      "open_windows": [
+        {
+          "start": "10:30",
+          "end": "12:00"
+        },
+        {
+          "start": "13:30",
+          "end": "16:15"
+        }
+      ],
+      "specials": [],
+      "audience": [
+        "bambini",
+        "famiglie"
+      ]
+    },
+    {
+      "id": "yin_yoga",
+      "name": "Area Benessere – Yin Yoga",
+      "location": "Parco (area benessere)",
+      "type": "wellness_session",
+      "open_windows": [],
+      "specials": [
+        {
+          "name": "Yin Yoga",
+          "start": "10:30",
+          "end": "11:00",
+          "audience": [
+            "adulti",
+            "per_tutti"
+          ],
+          "capacity": 30,
+          "notes": [
+            "Bimbi ammessi"
+          ]
+        },
+        {
+          "name": "Yin Yoga",
+          "start": "12:10",
+          "end": "12:40",
+          "audience": [
+            "adulti",
+            "per_tutti"
+          ],
+          "capacity": 30,
+          "notes": [
+            "Bimbi ammessi"
+          ]
+        },
+        {
+          "name": "Yin Yoga",
+          "start": "13:50",
+          "end": "14:20",
+          "audience": [
+            "adulti",
+            "per_tutti"
+          ],
+          "capacity": 30,
+          "notes": [
+            "Bimbi ammessi"
+          ]
+        },
+        {
+          "name": "Yin Yoga",
+          "start": "15:30",
+          "end": "16:00",
+          "audience": [
+            "adulti",
+            "per_tutti"
+          ],
+          "capacity": 30,
+          "notes": [
+            "Bimbi ammessi"
+          ]
+        }
+      ],
+      "audience": [
+        "adulti",
+        "per_tutti"
+      ]
+    },
+    {
+      "id": "heart_meditation",
+      "name": "Area Benessere – Meditazione del Cuore",
+      "location": "Parco (area benessere)",
+      "type": "wellness_session",
+      "open_windows": [],
+      "specials": [
+        {
+          "name": "Meditazione del Cuore",
+          "start": "11:20",
+          "end": "11:50",
+          "audience": [
+            "adulti"
+          ],
+          "capacity": 40,
+          "notes": [
+            "Solo adulti"
+          ]
+        },
+        {
+          "name": "Meditazione del Cuore",
+          "start": "13:00",
+          "end": "13:30",
+          "audience": [
+            "adulti"
+          ],
+          "capacity": 40,
+          "notes": [
+            "Solo adulti"
+          ]
+        },
+        {
+          "name": "Meditazione del Cuore",
+          "start": "14:40",
+          "end": "15:10",
+          "audience": [
+            "adulti"
+          ],
+          "capacity": 40,
+          "notes": [
+            "Solo adulti"
+          ]
+        },
+        {
+          "name": "Meditazione del Cuore",
+          "start": "16:20",
+          "end": "16:50",
+          "audience": [
+            "adulti"
+          ],
+          "capacity": 40,
+          "notes": [
+            "Solo adulti"
+          ]
+        }
+      ],
+      "audience": [
+        "adulti"
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "intent": "orari_apertura",
+      "user_examples": [
+        "A che ora apre?",
+        "Fino a che ora posso entrare?",
+        "Quando chiude il castello?",
+        "Orari biglietteria"
+      ],
+      "answer_template": "Ingresso e biglietteria dalle {entry_start} alle {entry_end} (ultimo ingresso {entry_end}). Le attività terminano alle {activities_end}. Parco e Castello chiudono alle {close_time}."
+    },
+    {
+      "intent": "orari_area",
+      "user_examples": [
+        "Orari Principesse",
+        "Quando è aperta la Magia?",
+        "Il Calice è aperto tutto il giorno?",
+        "Orari Snoezelen"
+      ],
+      "answer_template": "{area_name}: {open_windows_text}. Eventi/turni principali: {specials_text}."
+    },
+    {
+      "intent": "cosa_fare_ora",
+      "user_examples": [
+        "Cosa c'è adesso?",
+        "Cosa posso fare alle 15:00?",
+        "Cosa è aperto alle 11:10?"
+      ],
+      "answer_template": "Alle {time} puoi fare: {open_list}. Prossimi momenti speciali: {next_specials}."
+    },
+    {
+      "intent": "consiglio_orario_arrivo",
+      "user_examples": [
+        "Quando è meglio arrivare?",
+        "A che ora conviene venire per fare più cose?",
+        "Arrivo alle 15, cosa riesco a fare?"
+      ],
+      "answer_template": "Per fare più attività possibili ti consigliamo di arrivare entro le 11:30. Se arrivi dopo le 13:30 punta su spettacoli, Magia, Sentiero Incantato e Principesse (dalle 15:00)."
+    },
+    {
+      "intent": "bambini",
+      "user_examples": [
+        "Cosa c'è per i bambini?",
+        "Attività per bimbi 4-10",
+        "Cosa può fare un bambino?"
+      ],
+      "answer_template": "Per i bambini: Principesse, Scuola di Magia (lezioni), Calice (mini torneo), Ballo nel Castello, Snoezelen e Casa di Mago Merlino. Dimmi l'orario di arrivo e ti preparo una scaletta."
+    },
+    {
+      "intent": "adulti",
+      "user_examples": [
+        "Cosa c'è per gli adulti?",
+        "Benessere per genitori",
+        "Yoga e meditazione orari"
+      ],
+      "answer_template": "Per gli adulti: Area Benessere (Yin Yoga e Meditazione del Cuore a sessioni), Sentiero Incantato (passeggiata d'arte e suoni), spettacoli e Magia. Vuoi più relax o più show?"
+    },
+    {
+      "intent": "percorso_incantato",
+      "user_examples": [
+        "Cos'è il Sentiero Incantato?",
+        "Quanto è lungo il percorso?",
+        "Si può fare passeggiando?"
+      ],
+      "answer_template": "Il Sentiero Incantato del Castello è un percorso di circa 1 km tra sentieri e stagno, con creature colorate e strumenti sonori interattivi da suonare. È aperto dalle 09:30 alle 17:00 ed è pensato per tutti."
+    },
+    {
+      "intent": "programma_personalizzato",
+      "user_examples": [
+        "Mi fai un programma della giornata?",
+        "Cosa mi consigli se arrivo alle 10:30?",
+        "Voglio fare magia e k-pop"
+      ],
+      "answer_template": "Certo! Dimmi: 1) a che ora arrivi, 2) se sei con bambini (età), 3) cosa ti piace di più (K-pop, Magia, Principesse, Tornei, Ballo, Snoezelen, Merlino, Benessere, Sentiero). Ti preparo una scaletta con orari."
+    }
+  ],
+  "rules": {
+    "preferences_catalog": [
+      {
+        "key": "kpop",
+        "label": "K-POP",
+        "weight": 5
+      },
+      {
+        "key": "shows",
+        "label": "Spettacoli",
+        "weight": 3
+      },
+      {
+        "key": "magic",
+        "label": "Scuola di Magia",
+        "weight": 5
+      },
+      {
+        "key": "princesses",
+        "label": "Principesse",
+        "weight": 4
+      },
+      {
+        "key": "goblet",
+        "label": "Calice/Tornei",
+        "weight": 4
+      },
+      {
+        "key": "ball",
+        "label": "Ballo nel Castello",
+        "weight": 4
+      },
+      {
+        "key": "snoezelen",
+        "label": "Snoezelen",
+        "weight": 4
+      },
+      {
+        "key": "merlin",
+        "label": "Mago Merlino",
+        "weight": 3
+      },
+      {
+        "key": "wellness",
+        "label": "Benessere (Yin/Med.)",
+        "weight": 4
+      },
+      {
+        "key": "path",
+        "label": "Sentiero Incantato",
+        "weight": 3
+      }
+    ],
+    "heuristics": [
+      "Se l'utente arriva prima delle 10:30: suggerire Sentiero Incantato (09:30–17:00) + Principesse dalle 10:00, poi scegliere una prima attività a turni dalle 10:30.",
+      "Se l'utente arriva tra 10:00 e 11:30: puntare su 1 turno bimbi (Calice o Snoezelen) + 1 lezione Magia, e ricordare K-POP alle 11:30.",
+      "Se l'utente arriva dopo 13:30: evidenziare i prossimi momenti speciali (BEE-Dance 14:00, Principesse 15:00, K-POP 16:00) e suggerire il Sentiero Incantato per una pausa nel verde.",
+      "Per adulti relax: proporre la sessione Benessere più vicina (Yin/Meditazione) e aggiungere Sentiero Incantato.",
+      "Per famiglie: alternare attività bimbi indoor (Calice/Snoezelen/Ballo) con outdoor (Principesse/Magia/Sentiero)."
+    ],
+    "itinerary_output_example": [
+      {
+        "time": "10:00",
+        "what": "Principesse",
+        "where": "Cortile degli Stemmi",
+        "notes": "inizio soft, poca coda"
+      },
+      {
+        "time": "10:30",
+        "what": "Mini Torneo",
+        "where": "Sala Armature",
+        "notes": "arriva 5-10 min prima"
+      }
+    ]
+  },
+  "chatbot_prompt_skeleton": {
+    "style": "Amichevole, chiaro, pratico. Orari sempre in formato HH:MM. Risposte brevi ma complete.",
+    "followup_policy": "Fai al massimo 1 domanda di chiarimento se mancano dati chiave.",
+    "availability_note": "Non garantire disponibilità: alcune attività sono a turni e possono avere attesa. Consiglia di arrivare 5–10 minuti prima."
+  }
+}
