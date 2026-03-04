@@ -331,6 +331,12 @@
       background: #fff8e9;
     }
 
+    .status.next {
+      color: #1d3f8c;
+      border-color: #b9c9f1;
+      background: #edf3ff;
+    }
+
     .footer-note {
       margin-top: 16px;
       color: #505a71;
@@ -642,8 +648,16 @@
       return activity.openRanges.some(range => isWithinRange(time, range));
     }
 
+    function getStartCandidates(activity) {
+      const starts = [...(activity.starts || [])];
+      if (activity.sessionByRanges) {
+        activity.openRanges.forEach(([start]) => starts.push(start));
+      }
+      return Array.from(new Set(starts));
+    }
+
     function hasStartAt(activity, time) {
-      return activity.starts.includes(time);
+      return getStartCandidates(activity).includes(time);
     }
 
     function hasRangeStartAt(activity, time) {
@@ -657,6 +671,15 @@
         const e = toMinutes(end);
         return t > s && t < e;
       });
+    }
+
+    function getNextStart(activity, time) {
+      const now = toMinutes(time);
+      const starts = getStartCandidates(activity)
+        .map(t => ({ raw: t, mins: toMinutes(t) }))
+        .sort((a, b) => a.mins - b.mins);
+      const next = starts.find(s => s.mins > now);
+      return next ? next.raw : "";
     }
 
     function buildSlots(start, end, step) {
@@ -740,15 +763,19 @@
           const startNow = hasStartAt(item, time);
           const rangeStartNow = item.sessionByRanges ? hasRangeStartAt(item, time) : false;
           const rangeRunningNow = item.sessionByRanges ? hasRangeRunningAt(item, time) : false;
+          const hasExplicitStarts = (item.starts || []).length > 0;
+          const runningByStarts = hasExplicitStarts && !startNow;
+          const inProgressNow = rangeRunningNow || runningByStarts || (!!item.runningLabel && !startNow);
+          const nextStart = getNextStart(item, time);
           let statusLabel = "";
 
           if (startNow) {
-            statusLabel = item.startsLabel || "inizio turno/lezione";
+            statusLabel = item.startsLabel || "inizio attività";
           } else if (item.runningLabel) {
             statusLabel = item.runningLabel;
           } else if (rangeStartNow) {
             statusLabel = "inizio attività";
-          } else if (rangeRunningNow) {
+          } else if (inProgressNow) {
             statusLabel = "attività in corso";
           }
 
@@ -756,7 +783,9 @@
             ...item,
             startNow,
             subStartsNow: (item.subActivities || []).filter(sub => sub.starts.includes(time)),
-            statusLabel
+            statusLabel,
+            inProgressNow,
+            nextStart
           };
         });
     }
@@ -770,6 +799,7 @@
               <strong><a class="activity-link jump-activity" href="#${a.id}" data-activity-id="${a.id}">${a.name}</a></strong> (${a.location})
               <span class="status open">aperto</span>
               ${a.statusLabel ? `<span class="status session">${a.statusLabel}</span>` : ""}
+              ${a.inProgressNow && !a.startNow && a.nextStart ? `<span class="status next">prossimo inizio: ${a.nextStart}</span>` : ""}
               ${a.subStartsNow.length ? `<div class="sub-now">${a.subStartsNow.map(sub => sub.name).join(" | ")}: inizio adesso</div>` : ""}
             </li>
           `).join("")}</ul>`
