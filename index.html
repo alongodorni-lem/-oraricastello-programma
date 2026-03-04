@@ -361,7 +361,7 @@
       display: inline-block;
     }
 
-    .modal-backdrop {
+    .activity-modal-backdrop {
       position: fixed;
       inset: 0;
       background: rgba(16, 24, 48, 0.55);
@@ -370,11 +370,11 @@
       z-index: 9998;
     }
 
-    .modal-backdrop.active {
+    .activity-modal-backdrop.active {
       display: block;
     }
 
-    .modal {
+    .activity-modal-panel {
       position: fixed;
       left: 50%;
       top: 50%;
@@ -382,6 +382,7 @@
       width: min(620px, calc(100vw - 28px));
       max-height: calc(100vh - 28px);
       overflow: auto;
+      display: block;
       background: #fff;
       border: 1px solid var(--border);
       border-radius: 14px;
@@ -432,7 +433,7 @@
         width: 100%;
       }
 
-      .modal {
+      .activity-modal-panel {
         width: calc(100vw - 20px);
         max-height: calc(100vh - 20px);
         padding: 12px;
@@ -499,8 +500,8 @@
     </p>
   </main>
 
-  <div id="activity-modal" class="modal-backdrop" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div id="activity-modal" class="activity-modal-backdrop" aria-hidden="true">
+    <div class="activity-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-head">
         <h3 id="modal-title" class="modal-title">Dettaglio attività</h3>
         <button id="modal-close" class="modal-close" type="button">Chiudi</button>
