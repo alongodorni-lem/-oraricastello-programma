@@ -367,7 +367,7 @@
       display: inline-block;
     }
 
-    .activity-modal-backdrop {
+    #activity-modal.activity-modal-backdrop {
       position: fixed;
       inset: 0;
       background: rgba(16, 24, 48, 0.55);
@@ -375,14 +375,15 @@
       align-items: center;
       justify-content: center;
       padding: 14px;
-      z-index: 9998;
+      z-index: 2147483646;
     }
 
-    .activity-modal-backdrop.active {
-      display: flex;
+    #activity-modal.activity-modal-backdrop.active {
+      display: grid;
+      place-items: center;
     }
 
-    .activity-modal-panel {
+    #activity-modal-panel.activity-modal-panel {
       position: relative;
       width: min(620px, calc(100% - 28px));
       max-height: calc(100dvh - 28px);
@@ -393,7 +394,7 @@
       border-radius: 14px;
       box-shadow: 0 12px 30px rgba(8, 18, 41, 0.22);
       padding: 14px;
-      z-index: 9999;
+      z-index: 2147483647;
     }
 
     .modal-head {
@@ -438,7 +439,7 @@
         width: 100%;
       }
 
-      .activity-modal-panel {
+      #activity-modal-panel.activity-modal-panel {
         width: calc(100% - 20px);
         max-height: calc(100dvh - 20px);
         padding: 12px;
@@ -506,7 +507,7 @@
   </main>
 
   <div id="activity-modal" class="activity-modal-backdrop" aria-hidden="true">
-    <div class="activity-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div id="activity-modal-panel" class="activity-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
       <div class="modal-head">
         <h3 id="modal-title" class="modal-title">Dettaglio attività</h3>
         <button id="modal-close" class="modal-close" type="button">Chiudi</button>
@@ -840,6 +841,7 @@
       const buttons = Array.from(document.querySelectorAll(".tab-btn"));
       const panels = Array.from(document.querySelectorAll(".panel"));
       const modal = document.getElementById("activity-modal");
+      const modalPanel = document.getElementById("activity-modal-panel");
       const modalBody = document.getElementById("modal-body");
       const modalClose = document.getElementById("modal-close");
       function activatePanel(targetId) {
@@ -855,11 +857,23 @@
         modalBody.innerHTML = `<article class="activity">${buildActivityMarkup(item)}</article>`;
         modal.classList.add("active");
         modal.setAttribute("aria-hidden", "false");
+        modal.style.display = "grid";
+        modal.style.visibility = "visible";
+        modal.style.opacity = "1";
+        modalPanel.style.display = "block";
+        modalPanel.style.visibility = "visible";
+        modalPanel.style.opacity = "1";
       }
 
       function closeActivityModal() {
         modal.classList.remove("active");
         modal.setAttribute("aria-hidden", "true");
+        modal.style.display = "";
+        modal.style.visibility = "";
+        modal.style.opacity = "";
+        modalPanel.style.display = "";
+        modalPanel.style.visibility = "";
+        modalPanel.style.opacity = "";
       }
 
       buttons.forEach(btn => {
