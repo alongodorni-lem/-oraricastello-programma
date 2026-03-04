@@ -277,6 +277,10 @@
       line-height: 1.35;
     }
 
+    .slot .opens li.jump-activity-row {
+      cursor: pointer;
+    }
+
     .activity-link {
       color: var(--brand);
       text-decoration: none;
@@ -754,7 +758,7 @@
       const available = activitiesAt(time);
       const items = available.length
         ? `<ul class="opens">${available.map(a => `
-            <li>
+            <li class="jump-activity-row" data-activity-id="${a.id}">
               <strong><a class="activity-link jump-activity" href="#${a.id}" data-activity-id="${a.id}">${a.name}</a></strong> (${a.location})
               <span class="status open">aperto</span>
               ${a.statusLabel ? `<span class="status session">${a.statusLabel}</span>` : ""}
@@ -860,12 +864,12 @@
           return;
         }
 
-        const link = event.target.closest(".jump-activity");
-        if (!link) {
+        const activityTarget = event.target.closest("[data-activity-id]");
+        if (!activityTarget) {
           return;
         }
         event.preventDefault();
-        const activityId = link.getAttribute("data-activity-id");
+        const activityId = activityTarget.getAttribute("data-activity-id");
         openActivityModal(activityId);
       });
     }
