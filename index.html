@@ -280,10 +280,6 @@
       line-height: 1.35;
     }
 
-    .slot .opens li.jump-activity-row {
-      cursor: pointer;
-    }
-
     .activity-link {
       color: var(--brand);
       text-decoration: none;
@@ -362,12 +358,8 @@
     .sub-now {
       margin-top: 4px;
       font-size: 0.86rem;
-      color: #5d4b08;
-      background: #fff8db;
-      border: 1px solid #f0df9d;
-      border-radius: 8px;
-      padding: 4px 8px;
-      display: inline-block;
+      color: #2d3448;
+      display: block;
     }
 
     @media (max-width: 700px) {
@@ -747,8 +739,8 @@
       const available = activitiesAt(time);
       const items = available.length
         ? `<ul class="opens">${available.map(a => `
-            <li class="jump-activity-row" data-activity-id="${a.id}">
-              <strong><a class="activity-link jump-activity" href="#${a.id}" data-activity-id="${a.id}">${a.name}</a></strong> (${a.location})
+            <li>
+              <strong>${a.name}</strong> (${a.location})
               <span class="status open">aperto</span>
               ${a.statusLabel ? `<span class="status session">${a.statusLabel}</span>` : ""}
               ${((a.inProgressNow && !a.startNow) || (a.startNow && a.showNextStartOnStart)) && a.nextStart ? `<span class="status next">prossimo inizio: ${a.nextStart}</span>` : ""}
@@ -835,18 +827,6 @@
           return;
         }
 
-        const activityTarget = event.target.closest("[data-activity-id]");
-        if (!activityTarget) {
-          return;
-        }
-        event.preventDefault();
-        const activityId = activityTarget.getAttribute("data-activity-id");
-        activatePanel("by-activity");
-        const target = document.getElementById(activityId);
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "center" });
-          history.replaceState(null, "", "#" + activityId);
-        }
       });
     }
 
