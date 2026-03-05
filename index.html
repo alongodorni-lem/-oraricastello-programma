@@ -456,10 +456,11 @@
         location: "Area Spettacoli",
         openRanges: [["11:30", "12:10"], ["16:00", "16:40"]],
         starts: ["11:30", "16:00"],
-        startsText: "Inizio spettacolo ore 11:30 - Inizio spettacolo ore 16:00",
+        startsText: "Inizio spettacolo: 11:30 e Inizio spettacolo: 16:00",
         startsLabel: "inizio spettacolo",
         runningLabel: "spettacolo in corso",
-        note: "Durata circa 20 minuti. Per raggiungere l'Area Spettacoli scendere per circa 200 mt. nella parte inferiore del Parco, cancello sulla destra osservando il Castello."
+        hideOpenRanges: true,
+        note: "Durata circa 40 minuti. Per raggiungere l'Area Spettacoli scendere per circa 200 mt. nella parte inferiore del Parco, cancello sulla destra osservando il Castello."
       },
       {
         name: "Spettacoli - BEE-Dance con Ape Maia",
@@ -522,6 +523,7 @@
         location: "Castello - Stanza del Camino",
         openRanges: [["10:00", "12:30"], ["14:00", "15:30"], ["16:00", "17:00"]],
         starts: ["10:00", "10:30", "11:00", "11:30", "12:00", "14:00", "14:30", "15:00", "16:00", "16:30"],
+        showNextStartOnStart: true,
         note: "Accesso a turni."
       },
       {
@@ -536,6 +538,7 @@
         openRanges: [["10:30", "11:00"], ["12:10", "12:40"], ["13:50", "14:20"], ["15:30", "16:00"]],
         starts: [],
         sessionByRanges: true,
+        showNextStartOnStart: true,
         note: "Area relax per i genitori. Nuova formula Family Fun&Relax esclusiva di Grotta di Babbo Natale Lem s.r.l."
       },
       {
@@ -544,6 +547,7 @@
         openRanges: [["11:20", "11:50"], ["13:00", "13:30"], ["14:40", "15:10"], ["16:20", "16:50"]],
         starts: [],
         sessionByRanges: true,
+        showNextStartOnStart: true,
         note: "Area relax per i genitori. Nuova formula Family Fun&Relax esclusiva di Grotta di Babbo Natale Lem s.r.l."
       },
       {
@@ -616,6 +620,15 @@
       return next ? next.raw : "";
     }
 
+    function getNextStartFromTimes(times, time) {
+      const now = toMinutes(time);
+      const sorted = times
+        .map(t => ({ raw: t, mins: toMinutes(t) }))
+        .sort((a, b) => a.mins - b.mins);
+      const next = sorted.find(s => s.mins > now);
+      return next ? next.raw : "";
+    }
+
     function buildSlots(start, end, step) {
       const slots = new Set([start, end]);
       let cursor = toMinutes(start);
@@ -669,9 +682,9 @@
       return `
         <h3>${item.name}</h3>
         <p class="place">${item.location}</p>
-        <div class="chips">
+        ${item.hideOpenRanges ? "" : `<div class="chips">
           ${item.openRanges.map(([from, to]) => `<span class="chip">Aperto: ${linkTime(from)} - ${linkTime(to)}</span>`).join("")}
-        </div>
+        </div>`}
         ${startsInfo}
         ${subActivitiesInfo}
         ${noteInfo}
@@ -716,7 +729,12 @@
           return {
             ...item,
             startNow,
-            subStartsNow: (item.subActivities || []).filter(sub => sub.starts.includes(time)),
+            subStartsNow: (item.subActivities || [])
+              .filter(sub => sub.starts.includes(time))
+              .map(sub => ({
+                ...sub,
+                nextStart: getNextStartFromTimes(sub.starts, time)
+              })),
             statusLabel,
             inProgressNow,
             nextStart
@@ -733,8 +751,14 @@
               <strong><a class="activity-link jump-activity" href="#${a.id}" data-activity-id="${a.id}">${a.name}</a></strong> (${a.location})
               <span class="status open">aperto</span>
               ${a.statusLabel ? `<span class="status session">${a.statusLabel}</span>` : ""}
-              ${a.inProgressNow && !a.startNow && a.nextStart ? `<span class="status next">prossimo inizio: ${a.nextStart}</span>` : ""}
-              ${a.subStartsNow.length ? `<div class="sub-now">${a.subStartsNow.map(sub => sub.name).join(" | ")}: inizio adesso</div>` : ""}
+              ${((a.inProgressNow && !a.startNow) || (a.startNow && a.showNextStartOnStart)) && a.nextStart ? `<span class="status next">prossimo inizio: ${a.nextStart}</span>` : ""}
+              ${a.subStartsNow.length ? a.subStartsNow.map(sub => `
+                <div class="sub-now">
+                  <strong>${sub.name}</strong>
+                  <span class="status session">inizio attività</span>
+                  ${sub.nextStart ? `<span class="status next">prossimo inizio: ${sub.nextStart}</span>` : ""}
+                </div>
+              `).join("") : ""}
             </li>
           `).join("")}</ul>`
         : '<p class="note">Nessuna attività aperta in questa fascia oraria.</p>';
