@@ -208,6 +208,9 @@
       border: 1px dashed #cfd8ef;
       border-radius: 12px;
       background: #fbfcff;
+      position: sticky;
+      top: 8px;
+      z-index: 20;
     }
 
     label {
@@ -367,60 +370,6 @@
       display: inline-block;
     }
 
-    #activity-modal.activity-modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(16, 24, 48, 0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 14px;
-      z-index: 2147483646;
-    }
-
-    #activity-modal.activity-modal-backdrop.active {
-      display: grid;
-      place-items: center;
-    }
-
-    #activity-modal-panel.activity-modal-panel {
-      position: relative;
-      width: min(620px, calc(100% - 28px));
-      max-height: calc(100dvh - 28px);
-      overflow: auto;
-      display: block;
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      box-shadow: 0 12px 30px rgba(8, 18, 41, 0.22);
-      padding: 14px;
-      z-index: 2147483647;
-    }
-
-    .modal-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .modal-title {
-      margin: 0;
-      color: var(--brand);
-      font-size: 1.1rem;
-    }
-
-    .modal-close {
-      border: 1px solid #c5d0eb;
-      background: #fff;
-      color: #2f3550;
-      border-radius: 8px;
-      padding: 6px 10px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
     @media (max-width: 700px) {
       .container {
         padding: 14px;
@@ -437,12 +386,6 @@
 
       select {
         width: 100%;
-      }
-
-      #activity-modal-panel.activity-modal-panel {
-        width: calc(100% - 20px);
-        max-height: calc(100dvh - 20px);
-        padding: 12px;
       }
     }
   </style>
@@ -505,16 +448,6 @@
       bestiario d'arte e incantesimi sonori, percorso di circa 1 km con creature e strumenti interattivi per tutti.
     </p>
   </main>
-
-  <div id="activity-modal" class="activity-modal-backdrop" aria-hidden="true">
-    <div id="activity-modal-panel" class="activity-modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-head">
-        <h3 id="modal-title" class="modal-title">Dettaglio attività</h3>
-        <button id="modal-close" class="modal-close" type="button">Chiudi</button>
-      </div>
-      <div id="modal-body"></div>
-    </div>
-  </div>
 
   <script>
     const program = [
@@ -827,71 +760,34 @@
       });
     }
 
+    function renderTimeView(slots, selectedTime) {
+      renderSlot("single-slot-result", selectedTime);
+      const visibleSlots = slots.filter(time => toMinutes(time) >= toMinutes(selectedTime));
+      renderTimeline(visibleSlots);
+    }
+
     function renderFilter(slots) {
       const select = document.getElementById("time-filter");
       select.innerHTML = slots.map(time => `<option value="${time}">${time}</option>`).join("");
       select.value = "10:30";
-      renderSlot("single-slot-result", select.value);
+      renderTimeView(slots, select.value);
       select.addEventListener("change", () => {
-        renderSlot("single-slot-result", select.value);
+        renderTimeView(slots, select.value);
       });
     }
 
-    function setupTabs() {
+    function setupTabs(slots) {
       const buttons = Array.from(document.querySelectorAll(".tab-btn"));
       const panels = Array.from(document.querySelectorAll(".panel"));
-      const modal = document.getElementById("activity-modal");
-      const modalPanel = document.getElementById("activity-modal-panel");
-      const modalBody = document.getElementById("modal-body");
-      const modalClose = document.getElementById("modal-close");
       function activatePanel(targetId) {
         buttons.forEach(b => b.classList.toggle("active", b.dataset.target === targetId));
         panels.forEach(p => p.classList.toggle("active", p.id === targetId));
-      }
-
-      function openActivityModal(activityId) {
-        const item = activities.find(a => a.id === activityId);
-        if (!item) {
-          return;
-        }
-        modalBody.innerHTML = `<article class="activity">${buildActivityMarkup(item)}</article>`;
-        modal.classList.add("active");
-        modal.setAttribute("aria-hidden", "false");
-        modal.style.display = "grid";
-        modal.style.visibility = "visible";
-        modal.style.opacity = "1";
-        modalPanel.style.display = "block";
-        modalPanel.style.visibility = "visible";
-        modalPanel.style.opacity = "1";
-      }
-
-      function closeActivityModal() {
-        modal.classList.remove("active");
-        modal.setAttribute("aria-hidden", "true");
-        modal.style.display = "";
-        modal.style.visibility = "";
-        modal.style.opacity = "";
-        modalPanel.style.display = "";
-        modalPanel.style.visibility = "";
-        modalPanel.style.opacity = "";
       }
 
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
           activatePanel(btn.dataset.target);
         });
-      });
-
-      modalClose.addEventListener("click", closeActivityModal);
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          closeActivityModal();
-        }
-      });
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeActivityModal();
-        }
       });
 
       document.addEventListener("click", (event) => {
@@ -906,13 +802,12 @@
             if (hasOption) {
               select.value = selectedTime;
             }
-            renderSlot("single-slot-result", select.value);
+            renderTimeView(slots, select.value);
             const timelineSlot = document.getElementById("slot-" + select.value.replace(":", ""));
             if (timelineSlot) {
               timelineSlot.scrollIntoView({ behavior: "smooth", block: "center" });
             }
           }
-          closeActivityModal();
           return;
         }
 
@@ -922,7 +817,12 @@
         }
         event.preventDefault();
         const activityId = activityTarget.getAttribute("data-activity-id");
-        openActivityModal(activityId);
+        activatePanel("by-activity");
+        const target = document.getElementById(activityId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "center" });
+          history.replaceState(null, "", "#" + activityId);
+        }
       });
     }
 
@@ -930,8 +830,7 @@
       const slots = buildSlots(START, END, STEP_MINUTES);
       renderActivities();
       renderFilter(slots);
-      renderTimeline(slots);
-      setupTabs();
+      setupTabs(slots);
     }
 
     init();
