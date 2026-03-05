@@ -491,7 +491,7 @@
       },
       {
         name: "Il Calice dei Tre Campioni",
-        location: "Castello - Sala Armature",
+        location: "Interno Castello - Sala Armature",
         openRanges: [["10:00", "11:45"], ["13:15", "17:00"]],
         starts: [],
         note: "Maghi e maghette se vogliono possono vestirsi a tema, sarà ancora più bello.",
@@ -505,14 +505,14 @@
       },
       {
         name: "Ballo nel Castello",
-        location: "Castello - Salone delle Feste",
+        location: "Interno Castello - Salone delle Feste",
         openRanges: [["10:30", "12:00"], ["13:30", "15:00"], ["16:00", "17:00"]],
         starts: [],
         note: "Con una maestra di danza eccezionale, la Principessa Belle. Se vuoi puoi vestirti a tema, sarà ancora più bello."
       },
       {
         name: "Stanza Snoezelen per bambini",
-        location: "Castello - Stanza del Camino",
+        location: "Interno Castello - Stanza del Camino",
         openRanges: [["10:00", "12:30"], ["14:00", "15:30"], ["16:00", "17:00"]],
         starts: ["10:00", "10:30", "11:00", "11:30", "12:00", "14:00", "14:30", "15:00", "16:00", "16:30"],
         showNextStartOnStart: true,
@@ -795,6 +795,15 @@
     function setupTabs(slots) {
       const buttons = Array.from(document.querySelectorAll(".tab-btn"));
       const panels = Array.from(document.querySelectorAll(".panel"));
+      const byTimePanel = document.getElementById("by-time");
+      function resetTimeFilterToFirst() {
+        const select = document.getElementById("time-filter");
+        if (!select || !select.options.length) {
+          return;
+        }
+        select.selectedIndex = 0;
+        renderTimeView(slots, select.value);
+      }
       function activatePanel(targetId) {
         buttons.forEach(b => b.classList.toggle("active", b.dataset.target === targetId));
         panels.forEach(p => p.classList.toggle("active", p.id === targetId));
@@ -802,7 +811,11 @@
 
       buttons.forEach(btn => {
         btn.addEventListener("click", () => {
+          const wasByTimeActive = byTimePanel.classList.contains("active");
           activatePanel(btn.dataset.target);
+          if (btn.dataset.target === "by-time" && !wasByTimeActive) {
+            resetTimeFilterToFirst();
+          }
         });
       });
 
