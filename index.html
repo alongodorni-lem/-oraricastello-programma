@@ -515,8 +515,11 @@
         location: "Interno Castello - Stanza del Camino",
         openRanges: [["10:00", "12:30"], ["14:00", "15:30"], ["16:00", "17:00"]],
         starts: ["10:00", "10:30", "11:00", "11:30", "12:00", "14:00", "14:30", "15:00", "16:00", "16:30"],
+        hideOpenRanges: true,
+        startsTitle: "Sessioni",
+        startsSeparator: " - ",
         showNextStartOnStart: true,
-        note: "Accesso a turni."
+        note: "Durata circa 20 minuti. Accesso riservato a bambini e bambine fino a 7 anni. Fino a 4 anni con un genitore accompagnatore."
       },
       {
         name: "Casa di Mago Merlino",
@@ -530,8 +533,9 @@
         openRanges: [["10:30", "11:00"], ["12:10", "12:40"], ["13:50", "14:20"], ["15:30", "16:00"]],
         starts: [],
         sessionByRanges: true,
+        openLabel: "Sessioni",
         showNextStartOnStart: true,
-        note: "Area relax per i genitori. Nuova formula Family Fun&Relax esclusiva di Grotta di Babbo Natale Lem s.r.l."
+        note: "Area dedicata a genitori ed adulti. 1 Pass benessere per adulto incluso. Seconda attività benessere solo se disponibili posti liberi ad inizio sessione."
       },
       {
         name: "Area Benessere - Meditazione del Cuore",
@@ -539,8 +543,9 @@
         openRanges: [["11:20", "11:50"], ["13:00", "13:30"], ["14:40", "15:10"], ["16:20", "16:50"]],
         starts: [],
         sessionByRanges: true,
+        openLabel: "Sessioni",
         showNextStartOnStart: true,
-        note: "Area relax per i genitori. Nuova formula Family Fun&Relax esclusiva di Grotta di Babbo Natale Lem s.r.l."
+        note: "Area dedicata a genitori ed adulti. 1 Pass benessere per adulto incluso. Seconda attività benessere solo se disponibili posti liberi ad inizio sessione."
       },
       {
         name: "Sentiero Incantato del Castello",
@@ -657,10 +662,12 @@
     }
 
     function buildActivityMarkup(item) {
+      const startsTitle = item.startsTitle || "Inizi turni/lezioni";
+      const startsSeparator = item.startsSeparator || ", ";
       const startsInfo = item.startsText
         ? `<p class="note"><strong>${item.startsText.replace(/(\d{1,2}:\d{2})/g, (match) => linkTime(match))}</strong></p>`
         : item.starts.length
-          ? '<p class="note"><strong>Inizi turni/lezioni:</strong> ' + linkTimesList(item.starts) + "</p>"
+          ? `<p class="note"><strong>${startsTitle}:</strong> ${item.starts.map(time => linkTime(time)).join(startsSeparator)}</p>`
           : "";
       const subActivitiesInfo = (item.subActivities || []).length
         ? `<ul class="sub-activity-list">${item.subActivities.map(sub =>
@@ -675,7 +682,7 @@
         <h3>${item.name}</h3>
         <p class="place">${item.location}</p>
         ${item.hideOpenRanges ? "" : `<div class="chips">
-          ${item.openRanges.map(([from, to]) => `<span class="chip">Aperto: ${linkTime(from)} - ${linkTime(to)}</span>`).join("")}
+          ${item.openRanges.map(([from, to]) => `<span class="chip">${item.openLabel || "Aperto"}: ${linkTime(from)} - ${linkTime(to)}</span>`).join("")}
         </div>`}
         ${startsInfo}
         ${subActivitiesInfo}
