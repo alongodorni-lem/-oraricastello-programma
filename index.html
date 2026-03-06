@@ -476,6 +476,7 @@
         openRanges: [["10:00", "17:00"]],
         starts: [],
         note: "Area aperta continuativamente con più esperienze. Maghi e maghette se vogliono possono vestirsi a tema, sarà ancora più bello.",
+        subIntro: "Puoi accedere all'area, visitare le postazioni ed incontrare i maghi negli orari di apertura ed in più partecipare ad alcuni appuntamenti speciali:",
         subActivities: [
           {
             name: "Lezioni Pozioni",
@@ -490,11 +491,12 @@
         ]
       },
       {
-        name: "Il Calice dei Tre Campioni",
+        name: "La stanza segreta del Mago",
         location: "Interno Castello - Sala Armature",
         openRanges: [["10:00", "11:45"], ["13:15", "17:00"]],
         starts: [],
         note: "Maghi e maghette se vogliono possono vestirsi a tema, sarà ancora più bello.",
+        subIntro: "Puoi accedere all'area e incontrare il grande mago negli orari di apertura ed in più partecipare ad alcuni appuntamenti speciali:",
         subActivities: [
           {
             name: "Mini Torneo",
@@ -674,6 +676,9 @@
             `<li><strong>${sub.name}:</strong> ${linkTimesList(sub.starts)}${sub.note ? " (" + sub.note + ")" : ""}</li>`
           ).join("")}</ul>`
         : "";
+      const subIntroInfo = item.subIntro
+        ? `<p class="note">${item.subIntro}</p>`
+        : "";
       const noteInfo = item.note
         ? '<p class="note">' + item.note + "</p>"
         : "";
@@ -685,6 +690,7 @@
           ${item.openRanges.map(([from, to]) => `<span class="chip">${item.openLabel || "Aperto"}: ${linkTime(from)} - ${linkTime(to)}</span>`).join("")}
         </div>`}
         ${startsInfo}
+        ${subIntroInfo}
         ${subActivitiesInfo}
         ${noteInfo}
       `;
