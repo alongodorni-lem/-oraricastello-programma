@@ -484,13 +484,13 @@
     },
     {
       "id": "yin_yoga",
-      "name": "Area Benessere – Yin Yoga",
+      "name": "Area Benessere – Yoga della gioia",
       "location": "Parco (area benessere)",
       "type": "wellness_session",
       "open_windows": [],
       "specials": [
         {
-          "name": "Yin Yoga",
+          "name": "Yoga della gioia",
           "start": "10:30",
           "end": "11:00",
           "audience": [
@@ -503,7 +503,7 @@
           ]
         },
         {
-          "name": "Yin Yoga",
+          "name": "Yoga della gioia",
           "start": "12:10",
           "end": "12:40",
           "audience": [
@@ -516,7 +516,7 @@
           ]
         },
         {
-          "name": "Yin Yoga",
+          "name": "Yoga della gioia",
           "start": "13:50",
           "end": "14:20",
           "audience": [
@@ -529,7 +529,7 @@
           ]
         },
         {
-          "name": "Yin Yoga",
+          "name": "Yoga della gioia",
           "start": "15:30",
           "end": "16:00",
           "audience": [
@@ -663,7 +663,7 @@
         "Benessere per genitori",
         "Yoga e meditazione orari"
       ],
-      "answer_template": "Per gli adulti: Area Benessere (Yin Yoga e Meditazione del Cuore a sessioni), Sentiero Incantato (passeggiata d'arte e suoni), spettacoli e Magia. Vuoi più relax o più show?"
+      "answer_template": "Per gli adulti: Area Benessere (Yoga della gioia e Meditazione del Cuore a sessioni), Sentiero Incantato (passeggiata d'arte e suoni), spettacoli e Magia. Vuoi più relax o più show?"
     },
     {
       "intent": "percorso_incantato",
